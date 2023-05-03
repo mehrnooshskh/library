@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: nest
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  prisma:
+    build: .
+    command: npx prisma migrate deploy && npx prisma generate && npm run start:dev
+    depends_on:
+      - mysql
+    environment:
+      DATABASE_URL: mysql://root:mysecretpassword@mysql:3306/mydatabase
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
