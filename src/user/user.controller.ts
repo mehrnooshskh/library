@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  
+  //test user control
   @Post()
   getHello(): string {
     return this.userService.getHello();
