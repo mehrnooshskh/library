@@ -8,7 +8,8 @@ export class UserController {
   //test user control
   @Post()
   getHello(): string {
-    return this.userService.getHello();
+   // return this.userService.getHello();
+   return 'hello';
   }
 
 }
